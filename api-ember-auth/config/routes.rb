@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :buddies, defaults: { format: :json }
   get 'assets/index'
   root 'assets#index'
 
   # session management
-  get 'session/create' => 'sessions#create'
+  get 'session/new' => 'sessions#new'
   get 'session/destroy' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

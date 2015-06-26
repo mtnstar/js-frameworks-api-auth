@@ -1,5 +1,2 @@
-# Override the default adapter with the `DS.ActiveModelAdapter` which
-
-ApiEmberAuth.ApplicationAdapter = DS.ActiveModelAdapter.extend({
-
+#Frontend.ApplicationAdapter = DS.ActiveModelAdapter.extend({
 #})

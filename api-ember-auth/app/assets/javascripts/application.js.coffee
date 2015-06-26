@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require ember
-
-window.Frontend = Ember.Application.create()
+#= require ember-data
+#= require frontend
+#= require frontend_includes
