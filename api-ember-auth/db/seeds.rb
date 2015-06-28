@@ -12,3 +12,5 @@
     name: Forgery(:name).first_name,
   })
 end
+
+User.create({username: 'alice', password: 'secret'})

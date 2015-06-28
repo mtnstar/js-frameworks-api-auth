@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'assets#index'
 
   # session management
-  get 'session/create' => 'sessions#create'
-  get 'session/destroy' => 'sessions#destroy'
+  post 'session/create' => 'sessions#create', defaults: { format: :json }
+  get 'session/destroy' => 'sessions#destroy', defaults: { format: :json }
 
 end

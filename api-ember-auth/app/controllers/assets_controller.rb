@@ -1,6 +1,9 @@
 class AssetsController < ApplicationController
 
-  def index
+  private
+  # disable access restriction
+  def authenticated?
+    true
   end
 
 end
