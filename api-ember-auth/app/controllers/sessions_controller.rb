@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
 
   skip_before_filter :authenticated?, only: :create
-  skip_before_filter :verify_authenticity_token
 
   def create
+    require 'pry'; binding.pry
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       api_key = ApiKey.create(user: user)

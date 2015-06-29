@@ -1,19 +1,7 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :authenticated?
+  include Authentication
 
-  private
-  def authenticated?
-      #ApiKey.exists?(access_token: token)
-  end
+  skip_before_filter :verify_authenticity_token
 
-  def auth_data
-  end
-
-  def authorization_header
-    request.headers["Authorization"]
-  end
-
-  def request_uri
-  end
 end
