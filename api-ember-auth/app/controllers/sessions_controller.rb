@@ -1,9 +1,8 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :authenticated?, only: :create
+  skip_before_filter :check_authorization, only: :create
 
   def create
-    require 'pry'; binding.pry
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       api_key = ApiKey.create(user: user)
@@ -14,6 +13,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    client_id = extract_auth_header.first
+    api_key = ApiKey.find_by(client_id: client_id)
+    api_key.destroy!
+    render json: { info: ['logged out successfully'] }
   end
 
 end

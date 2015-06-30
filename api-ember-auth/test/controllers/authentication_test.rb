@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class AuthenticationTest < ActiveSupport::TestCase
+
+  TEN_MINUTES = 6000000
+
   include Authentication
   setup do
     @request_headers = {}
@@ -35,17 +38,27 @@ class AuthenticationTest < ActiveSupport::TestCase
   end
 
   test 'authentication nok if timestamp too old' do
-    @timestamp = @timestamp - 6000000
+    @timestamp = @timestamp - TEN_MINUTES
     hash = Digest::SHA256.hexdigest([@timestamp, @url, @access_token].join(';')) 
     @request_headers["Authorization"] = [@client_id, @timestamp, hash].join(';')
     assert_not authenticated?
   end
 
   test 'authentication nok if timestamp too new' do
-    @timestamp = @timestamp + 6000000
+    @timestamp = @timestamp + TEN_MINUTES
     hash = Digest::SHA256.hexdigest([@timestamp, @url, @access_token].join(';')) 
     @request_headers["Authorization"] = [@client_id, @timestamp, hash].join(';')
     assert_not authenticated?
+  end
+
+  test '#timestamp_ok? false if timestamp too old' do
+    timestamp = Time.now.utc.to_i - TEN_MINUTES
+    assert_not timestamp_ok?(timestamp)
+  end
+
+  test '#timestamp_ok? false if timestamp too new' do
+    timestamp = Time.now.utc.to_i + TEN_MINUTES
+    assert_not timestamp_ok?(timestamp)
   end
 
   private
