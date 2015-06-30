@@ -4,3 +4,4 @@
 #= require ember-data
 #= require frontend
 #= require frontend_includes
+#= require_tree ./lib
