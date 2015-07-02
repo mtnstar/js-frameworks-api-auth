@@ -15,7 +15,7 @@ class AuthenticationTest < ActiveSupport::TestCase
 
     @user = User.find_by(username: 'alice')
     @api_key = ApiKey.create({user: @user})
-    @timestamp = Time.now.utc.to_i
+    @timestamp = (Time.now.to_f * 1000).to_i
 
     @client_id = @api_key.client_id
     @access_token = @api_key.access_token

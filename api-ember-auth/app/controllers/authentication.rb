@@ -37,7 +37,7 @@ module Authentication
   def timestamp_ok?(timestamp)
     timestamp = timestamp.to_i
     return false if timestamp == 0
-    now = Time.now.utc.to_i
+    now = (Time.now.to_f * 1000).to_i
     oldest = now - TIME_TOLERANCE
     newest = now + TIME_TOLERANCE
     timestamp > oldest && timestamp < newest
