@@ -36,7 +36,7 @@ class AuthenticationWorkflowTest < ActionDispatch::IntegrationTest
   end
 
   def authorization_header(client_id, token, url)
-    timestamp = Time.now.utc.to_i
+    timestamp = Time.now.utc.to_i * 1000
     str = [timestamp, url, token].join(';')
     hash = Digest::SHA256.hexdigest(str)
     [client_id, timestamp, hash].join(';')
