@@ -5,7 +5,6 @@ class AuthHelper
   @authHeader: (uri) ->
     timestamp = new Date().getTime()
     url = @url(uri)
-    console.log(url)
     token = localStorage.getItem('token')
     client_id = localStorage.getItem('client_id')
     hash = @calculateHash(timestamp, url, token)

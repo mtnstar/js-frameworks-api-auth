@@ -1,6 +1,8 @@
-Login Form
-<form {{action "login" on="submit"}}>
-  {{input value=username type="text" id="username"}} <br/>
-  {{input value=password type="password" id="password"}} <br/>
-  <button type="submit">Login</button>
-</form>
+<div class='jumbotron loginbox'>
+margin: 0 auto;
+  <form {{action "login" on="submit"}}>
+    {{input value=username type="text" id="username" class='form-control' placeholder='Username'}} <br/>
+    {{input value=password type="password" id="password" class='form-control' placeholder='Password'}} <br/>
+    <button class='btn btn-primary' type="submit">Login</button>
+  </form>
+</div>
