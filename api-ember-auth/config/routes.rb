@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :buddies, defaults: { format: :json }
+  resources :buddies
+
   get 'assets/index'
   root 'assets#index'
 
   # session management
-  post 'sessions/create' => 'sessions#create', defaults: { format: :json }
-  get 'sessions/destroy' => 'sessions#destroy', defaults: { format: :json }
+  post 'sessions/create' => 'sessions#create'
+  get 'sessions/destroy' => 'sessions#destroy'
 
 end

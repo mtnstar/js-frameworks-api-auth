@@ -1,4 +1,4 @@
-class BuddiesController < ApplicationController
+class BuddiesController < ApiController
 
   def index
     @buddies = Buddy.all
