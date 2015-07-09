@@ -1,0 +1,25 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+</head>
+<body>
+  <a href='#' id='load_ajax'>Load Ajax</a>
+  <div id="content"></div>
+</body>
+<script>
+function updateContent() {
+  jQuery.ajax({
+    type: "GET",
+    url: 'content.html',
+    cache: false,
+    success: function(data) {
+      jQuery('#content').append(data);
+    }
+  });
+}
+jQuery('#load_ajax').click(function() {
+  updateContent();
+});
+document.cookie="testcookie=bob"; // add cookie on document load
+</script>
+</html>
