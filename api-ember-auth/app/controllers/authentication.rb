@@ -11,7 +11,8 @@ module Authentication
   private
   def check_authorization
     if !authenticated?
-      render json: { errors: ['invalid authentication']}, status: :unauthorized
+      add_error 'access denied, please login first'
+      render status: :unauthorized
     end
   end
 

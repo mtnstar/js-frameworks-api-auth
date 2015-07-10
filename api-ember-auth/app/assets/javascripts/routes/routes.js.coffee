@@ -15,5 +15,6 @@ Frontend.BuddiesRoute = Frontend.AuthenticatedRoute.extend
 Frontend.SessionRoute = Ember.Route.extend
   beforeModel:->
     token = localStorage.getItem('token')
-    if token
+    client_id = localStorage.getItem('client_id')
+    if token && client_id
       @transitionTo('/')

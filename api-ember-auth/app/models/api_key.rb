@@ -1,14 +1,8 @@
 class ApiKey < ActiveRecord::Base
+
   before_create :generate_access_token, :generate_client_id
 
   belongs_to :user
-
-  def as_json(options = {})
-    h = super(options)
-    h.delete('id')
-    h.delete('user_id')
-    h
-  end
 
   private
   def generate_access_token

@@ -5,10 +5,11 @@ class SessionsController < ApiController
   def create
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      api_key = ApiKey.create(user: user)
-      render json: api_key
+      @api_key = ApiKey.create(user: user)
+      add_info 'login successful'
     else
-      render json: { errors: ['invalid user or password']}, status: :unauthorized
+      add_error 'invalid user or password'
+      render status: :unauthorized
     end
   end
 
@@ -16,7 +17,7 @@ class SessionsController < ApiController
     client_id = extract_auth_header.first
     api_key = ApiKey.find_by(client_id: client_id)
     api_key.destroy!
-    render json: { info: ['logged out successfully'] }
+    add_info 'logout successful'
   end
 
 end

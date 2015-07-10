@@ -17,7 +17,15 @@ Ember.$.ajaxPrefilter (options, oriOpt, jqXHR) ->
   jqXHR.setRequestHeader("Authorization", authHeader)
   return
 
-#Frontend.ApplicationAdapter = DS.RESTAdapter.extend(
-  #headers: (->
-    #'Authorization': new AuthHelper().authHeader(@)
-  #).property().volatile())
+$(document).ajaxComplete (event, jqXHR, options) ->
+  $('.alerts').empty()
+  errors = jqXHR.responseJSON['errors']
+  messages = jqXHR.responseJSON['messages']
+
+  $.each(errors, ->
+    $('<div class="alert alert-danger" role="alert">').text(this).appendTo('.alerts')
+  )
+  $.each(messages, ->
+    $('<div class="alert alert-success" role="alert">').text(this).appendTo('.alerts')
+  )
+  return
