@@ -1,0 +1,16 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+</head>
+<body>
+</body>
+<script>
+// values used to create hash (URI, time-stamp, auth-token) 
+var raw_auth_values = CryptoJS.SHA256("/buddies,1434627975,5b5cd0da3121fc53b");
+// calculate SHA256 hash
+var hash = CryptoJS.SHA256(raw_auth_values);
+// add calculated hash to html body
+jQuery('<p>' + hash + '</p>').appendTo('body');
+</script>
+</html>
